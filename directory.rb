@@ -18,16 +18,16 @@ def input_students
 end
 
 def print_header
-puts "The students of Villains Academy"
-puts "-------------"
+puts "The students of Villains Academy".center(80)
+puts "-------------".center(80)
 end
 def print(students)
   students.each.with_index(1) do |student, index|
-    puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)".center(80)
   end
 end
 def print_footer(students)
-puts "Overall, we have #{students.count} great students"
+puts "Overall, we have #{students.count} great students".center(80)
 end
 #nothing happens until we call the methods
 students = input_students
