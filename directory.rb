@@ -36,25 +36,27 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # get the first name
-  name = gets.chomp
+  @name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
-  while !name.empty? do
+  while !@name.empty? do
     puts "What is their cohort"
-  cohort = gets.chomp
-  if cohort.empty?
-    cohort = "default"
+  @cohort = STDIN.gets.chomp
+  if @cohort.empty?
+    @cohort = "default"
   end
   #add the student hash to the array
-  @students << {name: name, cohort: cohort}
+
+  add_students
 
   if @students.count == 1
   puts "Now we have #{@students.count} student. Give me the next name"
   else
     puts "Now we have #{@students.count} students. Give me the next name"
   # get another name from the user
+
   end
   # get another name from the user
-  name = STDIN.gets.chomp
+@name = STDIN.gets.chomp
   end
   # return the array of input_students
 end
@@ -88,8 +90,8 @@ def save_students
 file = File.open("students.csv", "w")
 #iterate over the array of save_students
 @students.each do |student|
-  student_date = [student[:name], student[:cohort]]
-  csv_line = student_date.join(",")
+  student_data = [student[:name], student[:cohort]]
+  csv_line = student_data.join(",")
   file.puts csv_line
 end
 file.close
@@ -98,8 +100,8 @@ end
 def load_students(filename = "students.csv")
   file = File.open("students.csv", "r")
   file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+    @name, @cohort = line.chomp.split(',')
+    add_students
   end
   file.close
 end
@@ -114,6 +116,10 @@ else
   puts "Sorry, #{filename} doesn't exist.}"
   exit
 end
+end
+
+def add_students
+  @students << {name: @name, cohort: @cohort}
 end
 
 try_load_students
