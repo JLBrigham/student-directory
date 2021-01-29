@@ -33,10 +33,7 @@ end
 end
 
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
-  # get the first name
-  @name = STDIN.gets.chomp
+  get_student_name
   # while the name is not empty, repeat this code
   while !@name.empty? do
     puts "What is their cohort"
@@ -48,10 +45,10 @@ def input_students
   add_students
   student_count
   # get another name from the user
-  @name = STDIN.gets.chomp
-  end
-  # return the array of input_students
+@name = STDIN.gets.chomp
 end
+end
+  # return the array of input_students
 
 
 
@@ -87,6 +84,7 @@ file = File.open("students.csv", "w")
   file.puts csv_line
 end
 file.close
+puts "You successfully saved the students to the file."
 end
 
 def load_students(filename = "students.csv")
@@ -96,6 +94,7 @@ def load_students(filename = "students.csv")
     add_students
   end
   file.close
+puts "You successfully loaded the students to the file"
 end
 
 def try_load_students(filename = "students.csv")
@@ -121,6 +120,24 @@ def student_count
   # get another name from the user
   end
 end
+
+def get_student_name
+  puts "Please enter the names of the students"
+  puts "To finish, just hit return twice"
+  # get the first name
+  @name = STDIN.gets.chomp
+end
+
+#def get_student_cohort
+  #while !@name.empty? do
+    #puts "What is their cohort"
+  #@cohort = STDIN.gets.chomp
+  #if @cohort.empty?
+    #@cohort = "default"
+  #end
+#end
+#@name = STDIN.gets.chomp
+#end
 
 try_load_students
 interactive_menu
