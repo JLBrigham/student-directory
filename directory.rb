@@ -45,18 +45,10 @@ def input_students
     @cohort = "default"
   end
   #add the student hash to the array
-
   add_students
-
-  if @students.count == 1
-  puts "Now we have #{@students.count} student. Give me the next name"
-  else
-    puts "Now we have #{@students.count} students. Give me the next name"
+  student_count
   # get another name from the user
-
-  end
-  # get another name from the user
-@name = STDIN.gets.chomp
+  @name = STDIN.gets.chomp
   end
   # return the array of input_students
 end
@@ -119,6 +111,15 @@ end
 
 def add_students
   @students << {name: @name, cohort: @cohort}
+end
+
+def student_count
+  if @students.count == 1
+  puts "Now we have #{@students.count} student. Give me the next name"
+  else
+    puts "Now we have #{@students.count} students. Give me the next name"
+  # get another name from the user
+  end
 end
 
 try_load_students
